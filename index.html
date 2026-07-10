@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hexagon Cafe & Restaurant</title>
+    <link rel="icon" type="image/png" href="assets/hexagon_logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css?v=1.3">
+</head>
+<body class="no-scroll">
+    <!-- Preloader Screen -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <h1 class="preloader-title">Welcome to <br><span class="highlight">Hexagon Cafe & Restaurant</span></h1>
+            <div class="preloader-loader">
+                <div class="loader-bar"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="assets/hexagon_logo.png" alt="Hexagon Cafe & Restaurant Logo" class="logo-brand-img">
+            <div class="logo-text-wrapper">
+                <span class="animated-football-header">
+                    <img src="assets/rath_chariot_icon.webp" alt="Rath Chariot Icon">
+                </span>
+                <span class="logo-text">Hexagon Cafe & Restaurant</span>
+            </div>
+        </div>
+        <span class="rath-yatra-header-text">শুভ রথযাত্রা!</span>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#vibe">Our Vibe</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="navbar-actions">
+            <!-- FIFA World Cup 2026 Button for Poster -->
+            <button class="fifa-btn" id="open-promo-modal-direct-btn" title="Show Promotional Poster">
+                <div class="fifa-container">
+                    <div class="fifa-magic-ring"></div>
+                    <img src="assets/rath_yatra_icon.webp" alt="Rath Yatra Icon" class="fifa-svg">
+                </div>
+            </button>
+            
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg banner-box">
+            <img src="assets/banner_1.webp" alt="Hexagon Cafe & Restaurant Banner 1" class="active">
+            <img src="assets/banner_2.webp" alt="Hexagon Cafe & Restaurant Banner 2">
+            <img src="assets/banner_3.webp" alt="Hexagon Cafe & Restaurant Banner 3">
+            <div class="overlay"></div>
+        </div>
+        <!-- Click/Hover Zones for Banner Control -->
+        <div class="hero-nav-zone left-zone" title="Previous Image"></div>
+        <div class="hero-nav-zone right-zone" title="Next Image"></div>
+    </section>
+
+    <!-- Interactive/Fun Section (FIFA World Cup Restaurant Feast) -->
+    <!-- Rath Yatra Special Section -->
+    <section id="vibe" class="vibe-section">
+        <h2 class="section-title">Rath Yatra Special</h2>
+        <div class="vibe-container">
+            <!-- Temple Feast Altar Interactive Container -->
+            <div class="rath-feast-container" id="rath-feast-altar">
+                <div class="temple-arch"></div>
+                
+                <!-- Floating Rath Chariot -->
+                <div class="rath-altar-chariot" id="rath-altar-chariot">
+                    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <filter id="chariot-glow" x="-20%" y="-20%" width="140%" height="140%">
+                                <feGaussianBlur stdDeviation="3" result="blur" />
+                                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                            </filter>
+                        </defs>
+                        <!-- Flag on top -->
+                        <path d="M50,15 L50,5 L68,10 Z" fill="#ff4500" stroke="#d4af37" stroke-width="1" />
+                        <line x1="50" y1="5" x2="50" y2="20" stroke="#d4af37" stroke-width="1.5" />
+                        <!-- Canopy Dome -->
+                        <path d="M30,50 C30,20 70,20 70,50 Z" fill="#ff2200" stroke="#d4af37" stroke-width="1.5" />
+                        <path d="M36,50 C36,30 64,30 64,50 Z" fill="#ffe066" />
+                        <!-- Pillars -->
+                        <rect x="33" y="50" width="6" height="35" fill="#d4af37" />
+                        <rect x="61" y="50" width="6" height="35" fill="#d4af37" />
+                        <rect x="47" y="50" width="6" height="35" fill="#ffe066" />
+                        <!-- Chariot Base Platform -->
+                        <rect x="25" y="85" width="50" height="12" rx="3" fill="#ff4500" stroke="#d4af37" stroke-width="1.5" />
+                        <!-- Wheel Left -->
+                        <circle cx="32" cy="98" r="10" fill="#d4af37" stroke="#ff2200" stroke-width="2" />
+                        <circle cx="32" cy="98" r="3" fill="#ffe066" />
+                        <line x1="32" y1="88" x2="32" y2="108" stroke="#ff2200" stroke-width="1.5" />
+                        <line x1="22" y1="98" x2="42" y2="98" stroke="#ff2200" stroke-width="1.5" />
+                        <!-- Wheel Right -->
+                        <circle cx="68" cy="98" r="10" fill="#d4af37" stroke="#ff2200" stroke-width="2" />
+                        <circle cx="68" cy="98" r="3" fill="#ffe066" />
+                        <line x1="68" y1="88" x2="68" y2="108" stroke="#ff2200" stroke-width="1.5" />
+                        <line x1="58" y1="98" x2="78" y2="98" stroke="#ff2200" stroke-width="1.5" />
+                        <!-- Floral Garlands -->
+                        <circle cx="35" cy="55" r="2" fill="#ffffff" />
+                        <circle cx="42" cy="62" r="2" fill="#ffffff" />
+                        <circle cx="50" cy="65" r="2" fill="#ffffff" />
+                        <circle cx="58" cy="62" r="2" fill="#ffffff" />
+                        <circle cx="65" cy="55" r="2" fill="#ffffff" />
+                    </svg>
+                </div>
+
+                <!-- Hidden Special Fusion Burger (Reveals on click) -->
+                <div class="rath-fusion-burger">
+                    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Plate / Base -->
+                        <ellipse cx="60" cy="95" rx="42" ry="12" fill="#e6e6e6" stroke="#cccccc" stroke-width="2" />
+                        <!-- Bottom Bun -->
+                        <path d="M30,80 C30,90 90,90 90,80 Z" fill="#c68a4c" stroke="#8c5827" stroke-width="1.5" />
+                        <!-- Lettuce (Green) -->
+                        <path d="M25,75 Q35,70 45,75 Q55,70 65,75 Q75,70 85,75 Q95,70 95,75" fill="none" stroke="#2ecc71" stroke-width="4.5" stroke-linecap="round" />
+                        <!-- Steaming Patty -->
+                        <rect x="28" y="65" width="64" height="8" rx="3.5" fill="#5c3a21" stroke="#3d2412" stroke-width="1" />
+                        <!-- Melting Cheese -->
+                        <path d="M27,69 L93,69 L85,77 L70,69 L55,80 L40,69 L30,75 Z" fill="#f1c40f" />
+                        <!-- Tomato Slice -->
+                        <rect x="32" y="59" width="56" height="6" rx="3" fill="#e74c3c" />
+                        <!-- Top Bun -->
+                        <path d="M30,57 C30,30 90,30 90,57 Z" fill="#d99b59" stroke="#8c5827" stroke-width="1.5" />
+                        <!-- Sesame Seeds -->
+                        <circle cx="48" cy="45" r="0.75" fill="#ffffff" />
+                        <circle cx="58" cy="40" r="0.75" fill="#ffffff" />
+                        <circle cx="68" cy="43" r="0.75" fill="#ffffff" />
+                        <circle cx="78" cy="47" r="0.75" fill="#ffffff" />
+                        <!-- Mini Saffron Flag on Burger -->
+                        <line x1="75" y1="46" x2="75" y2="18" stroke="#ffe066" stroke-width="1.5" />
+                        <polygon points="75,18 93,24 75,30" fill="#ff4500" />
+                        <!-- Marigold flowers decorations -->
+                        <circle cx="25" cy="94" r="3" fill="#ffaa00" />
+                        <circle cx="95" cy="94" r="3" fill="#ffaa00" />
+                    </svg>
+                </div>
+
+                <!-- Clickable Temple Bell -->
+                <div class="temple-bell" id="temple-bell">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Top Hanging Loop -->
+                        <circle cx="50" cy="18" r="8" fill="none" stroke="#d4af37" stroke-width="3" />
+                        <!-- Bell Body -->
+                        <path d="M35,70 C35,40 65,40 65,70 Z" fill="#ffe066" stroke="#d4af37" stroke-width="2" />
+                        <!-- Bell Flared Rim -->
+                        <path d="M30,70 L70,70 L75,80 L25,80 Z" fill="#d4af37" stroke="#ffe066" stroke-width="1.5" />
+                        <!-- Clapper (Ringer) -->
+                        <circle cx="50" cy="85" r="5" fill="#ffaa00" />
+                        <line x1="50" y1="80" x2="50" y2="85" stroke="#d4af37" stroke-width="3" />
+                        <!-- Floral Garland -->
+                        <circle cx="42" cy="30" r="3.5" fill="#ffaa00" />
+                        <circle cx="50" cy="32" r="3.5" fill="#ff4500" />
+                        <circle cx="58" cy="30" r="3.5" fill="#ffaa00" />
+                    </svg>
+                </div>
+
+                <!-- Jai Jagannath Neon Message -->
+                <div class="rath-celebration" id="rath-celebration">JAI JAGANNATH! 🚩🍔</div>
+                
+                <!-- Confetti Prasad Rain -->
+                <div class="feast-item p1">🌸</div>
+                <div class="feast-item p2">🍔</div>
+                <div class="feast-item p3">🍕</div>
+                <div class="feast-item p4">🍟</div>
+                <div class="feast-item p5">🚩</div>
+                <div class="feast-item p6">✨</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section (Photo Gallery) -->
+    <section id="reviews" class="reviews-section">
+        <h2 class="section-title">Customer Review Photos</h2>
+        <div class="reviews-slider-container">
+            <div class="reviews-slider">
+                <div class="review-slide active">
+                    <img src="assets/review_1.webp" alt="Customer Review 1">
+                </div>
+                <div class="review-slide">
+                    <img src="assets/review_2.webp" alt="Customer Review 2">
+                </div>
+                <div class="review-slide">
+                    <img src="assets/review_3.webp" alt="Customer Review 3">
+                </div>
+                <div class="review-slide">
+                    <img src="assets/review_4.webp" alt="Customer Review 4">
+                </div>
+                <div class="review-slide">
+                    <img src="assets/review_5.webp" alt="Customer Review 5">
+                </div>
+                <div class="review-slide">
+                    <img src="assets/review_6.webp" alt="Customer Review 6">
+                </div>
+                <div class="review-slide">
+                    <img src="assets/review_7.webp" alt="Customer Review 7">
+                </div>
+                <div class="review-slide">
+                    <img src="assets/banner_1.webp" alt="Customer Review 8">
+                </div>
+                <div class="review-slide">
+                    <img src="assets/review_8.webp" alt="Customer Review 9">
+                </div>
+                <div class="review-slide">
+                    <img src="assets/review_9.webp" alt="Customer Review 10">
+                </div>
+                <div class="review-slide">
+                    <img src="assets/review_10.webp" alt="Customer Review 11">
+                </div>
+                <div class="review-slide">
+                    <img src="assets/review_11.webp" alt="Customer Review 12">
+                </div>
+                <div class="review-slide">
+                    <img src="assets/review_12.webp" alt="Customer Review 13">
+                </div>
+                <div class="review-slide">
+                    <img src="assets/review_13.webp" alt="Customer Review 14">
+                </div>
+            </div>
+            
+            <!-- Slider Controls -->
+            <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+            <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+            
+            <!-- Slider Dots -->
+            <div class="slider-dots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+                <span class="dot" data-index="3"></span>
+                <span class="dot" data-index="4"></span>
+                <span class="dot" data-index="5"></span>
+                <span class="dot" data-index="6"></span>
+                <span class="dot" data-index="7"></span>
+                <span class="dot" data-index="8"></span>
+                <span class="dot" data-index="9"></span>
+                <span class="dot" data-index="10"></span>
+                <span class="dot" data-index="11"></span>
+                <span class="dot" data-index="12"></span>
+                <span class="dot" data-index="13"></span>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="https://maps.app.goo.gl/kLZCxJQJG2rTErLb7" target="_blank" class="cta-button">View All Photos on Google Maps <i class="fas fa-external-link-alt"></i></a>
+        </div>
+    </section>
+
+    <!-- Contact & Footer -->
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">Contact & Socials</h2>
+        <div class="contact-container glassmorphism">
+            <div class="contact-info">
+                <h2>Visit Us</h2>
+                <div class="info-item">
+                    <a href="https://maps.app.goo.gl/YyVYn1bPS7JSJMBb8" target="_blank" style="color: inherit; text-decoration: none; display: flex; align-items: center; gap: 15px;">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>South kolatola, Baruipara, Nabadwip, Brahmanagar, West Bengal 741301</p>
+                    </a>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <p>+91 9800552493</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>hello@hexagoncafe.com</p>
+                </div>
+                <div class="info-item" id="open-msg-panel-direct-btn" style="cursor: pointer;">
+                    <i class="fas fa-paper-plane"></i>
+                    <p>Send a Message to Us</p>
+                </div>
+            </div>
+            <div class="social-links">
+                <h2>Follow Us</h2>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    <a href="https://wa.me/919800552493" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://maps.app.goo.gl/YyVYn1bPS7JSJMBb8" target="_blank" class="social-icon"><i class="fas fa-map-marker-alt"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Hexagon Cafe & Restaurant. Made with ❤️ | Make By Dripza</p>
+    </footer>
+
+
+
+    <!-- Message Panel Overlay -->
+    <div class="msg-panel-overlay" id="msg-panel-overlay"></div>
+
+    <!-- Slide-out Message Panel -->
+    <div class="msg-panel" id="msg-panel">
+        <button class="close-msg-panel-btn" id="close-msg-panel-btn">&times;</button>
+        <div class="msg-panel-header">
+            <h2>Send a Message</h2>
+            <p>We'd love to hear from you! Write to us and we'll save it to our sheet.</p>
+        </div>
+        <form id="msg-panel-form">
+            <div class="form-group">
+                <label for="msg-name">Your Name</label>
+                <input type="text" id="msg-name" required placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+                <label for="msg-email">Email or Phone</label>
+                <input type="text" id="msg-email" required placeholder="Enter email or phone number">
+            </div>
+            <div class="form-group">
+                <label for="msg-content">Message</label>
+                <textarea id="msg-content" rows="5" required placeholder="Type your message here..."></textarea>
+            </div>
+            <button type="submit" class="submit-msg-btn" id="submit-msg-btn">
+                <span>Send Message</span> <i class="fas fa-paper-plane"></i>
+            </button>
+        </form>
+        <div class="msg-status-container" id="msg-status-container"></div>
+    </div>
+
+
+
+    <!-- Promo Poster Modal -->
+    <div class="promo-modal" id="promo-modal">
+        <div class="promo-modal-overlay"></div>
+        <div class="promo-modal-content">
+            <button class="promo-modal-close" id="close-promo-modal-btn" aria-label="Close Promo Modal"><i class="fas fa-times"></i></button>
+            <img src="assets/promo_poster.webp" alt="Durga Puja Celebration Hexagon Cafe" class="promo-poster-img">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
