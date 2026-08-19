@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
@@ -25,12 +25,17 @@
             <img src="assets/hexagon_logo.png" alt="Hexagon Cafe & Restaurant Logo" class="logo-brand-img">
             <div class="logo-text-wrapper">
                 <span class="animated-football-header">
-                    <img src="assets/rath_chariot_icon.webp" alt="Rath Chariot Icon">
+                    <svg width="22" height="22" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#FF9933" d="M0 6h36v8H0z"/>
+                        <path fill="#FFFFFF" d="M0 14h36v8H0z"/>
+                        <path fill="#138808" d="M0 22h36v8H0z"/>
+                        <circle cx="18" cy="18" r="3.5" fill="none" stroke="#000080" stroke-width="0.8"/>
+                    </svg>
                 </span>
                 <span class="logo-text">Hexagon Cafe & Restaurant</span>
             </div>
         </div>
-        <span class="rath-yatra-header-text">শুভ রথযাত্রা!</span>
+        <span class="rath-yatra-header-text">শুভ স্বাধীনতা দিবস!</span>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#vibe">Our Vibe</a></li>
@@ -38,11 +43,17 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
         <div class="navbar-actions">
-            <!-- FIFA World Cup 2026 Button for Poster -->
-            <button class="fifa-btn" id="open-promo-modal-direct-btn" title="Show Promotional Poster">
+            <!-- Independence Day Button for Poster -->
+            <button class="fifa-btn" id="open-promo-modal-direct-btn" title="Show Independence Day Poster">
                 <div class="fifa-container">
                     <div class="fifa-magic-ring"></div>
-                    <img src="assets/rath_yatra_icon.webp" alt="Rath Yatra Icon" class="fifa-svg">
+                    <svg class="fifa-svg" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="18" cy="18" r="16" fill="#000080" stroke="#FF9933" stroke-width="2"/>
+                        <path fill="#FF9933" d="M6 10h24v5H6z"/>
+                        <path fill="#FFFFFF" d="M6 15h24v6H6z"/>
+                        <path fill="#138808" d="M6 21h24v5H6z"/>
+                        <circle cx="18" cy="18" r="2.5" fill="none" stroke="#000080" stroke-width="0.7"/>
+                    </svg>
                 </div>
             </button>
             
@@ -65,70 +76,65 @@
         <div class="hero-nav-zone right-zone" title="Next Image"></div>
     </section>
 
-    <!-- Interactive/Fun Section (FIFA World Cup Restaurant Feast) -->
-    <!-- Rath Yatra Special Section -->
+            <!-- Interactive Independence Day Special Section -->
     <section id="vibe" class="vibe-section">
-        <h2 class="section-title">Rath Yatra Special</h2>
+        <h2 class="section-title"> স্বাধীনতা দিবস Special </h2>
         <div class="vibe-container">
-            <!-- Temple Feast Altar Interactive Container -->
-            <div class="rath-feast-container" id="rath-feast-altar">
+            <!-- Freedom Feast Interactive Container -->
+            <div class="rath-feast-container" id="rath-feast-altar" title="Click the Freedom Wheel below!">
                 <div class="temple-arch"></div>
                 
-                <!-- Floating Rath Chariot -->
-                <div class="rath-altar-chariot" id="rath-altar-chariot">
+                <!-- Floating Indian Flag Emblem -->
+                <div class="rath-altar-chariot" id="rath-altar-chariot" title="Independence Day Flag Emblem">
                     <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <filter id="chariot-glow" x="-20%" y="-20%" width="140%" height="140%">
+                            <filter id="tricolor-glow" x="-20%" y="-20%" width="140%" height="140%">
                                 <feGaussianBlur stdDeviation="3" result="blur" />
                                 <feComposite in="SourceGraphic" in2="blur" operator="over" />
                             </filter>
                         </defs>
-                        <!-- Flag on top -->
-                        <path d="M50,15 L50,5 L68,10 Z" fill="#ff4500" stroke="#d4af37" stroke-width="1" />
-                        <line x1="50" y1="5" x2="50" y2="20" stroke="#d4af37" stroke-width="1.5" />
-                        <!-- Canopy Dome -->
-                        <path d="M30,50 C30,20 70,20 70,50 Z" fill="#ff2200" stroke="#d4af37" stroke-width="1.5" />
-                        <path d="M36,50 C36,30 64,30 64,50 Z" fill="#ffe066" />
-                        <!-- Pillars -->
-                        <rect x="33" y="50" width="6" height="35" fill="#d4af37" />
-                        <rect x="61" y="50" width="6" height="35" fill="#d4af37" />
-                        <rect x="47" y="50" width="6" height="35" fill="#ffe066" />
-                        <!-- Chariot Base Platform -->
-                        <rect x="25" y="85" width="50" height="12" rx="3" fill="#ff4500" stroke="#d4af37" stroke-width="1.5" />
-                        <!-- Wheel Left -->
-                        <circle cx="32" cy="98" r="10" fill="#d4af37" stroke="#ff2200" stroke-width="2" />
-                        <circle cx="32" cy="98" r="3" fill="#ffe066" />
-                        <line x1="32" y1="88" x2="32" y2="108" stroke="#ff2200" stroke-width="1.5" />
-                        <line x1="22" y1="98" x2="42" y2="98" stroke="#ff2200" stroke-width="1.5" />
-                        <!-- Wheel Right -->
-                        <circle cx="68" cy="98" r="10" fill="#d4af37" stroke="#ff2200" stroke-width="2" />
-                        <circle cx="68" cy="98" r="3" fill="#ffe066" />
-                        <line x1="68" y1="88" x2="68" y2="108" stroke="#ff2200" stroke-width="1.5" />
-                        <line x1="58" y1="98" x2="78" y2="98" stroke="#ff2200" stroke-width="1.5" />
-                        <!-- Floral Garlands -->
-                        <circle cx="35" cy="55" r="2" fill="#ffffff" />
-                        <circle cx="42" cy="62" r="2" fill="#ffffff" />
-                        <circle cx="50" cy="65" r="2" fill="#ffffff" />
-                        <circle cx="58" cy="62" r="2" fill="#ffffff" />
-                        <circle cx="65" cy="55" r="2" fill="#ffffff" />
+                        <!-- Flag Pole -->
+                        <rect x="22" y="10" width="4" height="95" rx="2" fill="#d4af37" stroke="#ffe066" stroke-width="0.8"/>
+                        <circle cx="24" cy="9" r="4" fill="#ffd700"/>
+                        
+                        <!-- Waving Indian Flag -->
+                        <!-- Saffron Band -->
+                        <path d="M26 15 C 45 10, 65 22, 88 15 L 88 32 C 65 39, 45 27, 26 32 Z" fill="#FF9933"/>
+                        <!-- White Band -->
+                        <path d="M26 32 C 45 27, 65 39, 88 32 L 88 49 C 65 56, 45 44, 26 49 Z" fill="#FFFFFF"/>
+                        <!-- Green Band -->
+                        <path d="M26 49 C 45 44, 65 56, 88 49 L 88 66 C 65 73, 45 61, 26 66 Z" fill="#138808"/>
+                        
+                        <!-- Ashoka Chakra in Center of White Band -->
+                        <circle cx="57" cy="40.5" r="5.5" fill="none" stroke="#000080" stroke-width="1.2"/>
+                        <circle cx="57" cy="40.5" r="1" fill="#000080"/>
+                        <!-- Chakra Spokes -->
+                        <line x1="57" y1="35" x2="57" y2="46" stroke="#000080" stroke-width="0.6"/>
+                        <line x1="51.5" y1="40.5" x2="62.5" y2="40.5" stroke="#000080" stroke-width="0.6"/>
+                        <line x1="53.1" y1="36.6" x2="60.9" y2="44.4" stroke="#000080" stroke-width="0.6"/>
+                        <line x1="53.1" y1="44.4" x2="60.9" y2="36.6" stroke="#000080" stroke-width="0.6"/>
+
+                        <!-- Pedestal Base -->
+                        <path d="M12 108 L36 108 L32 100 L16 100 Z" fill="#d4af37" stroke="#ffe066" stroke-width="1"/>
+                        <rect x="8" y="108" width="32" height="6" rx="2" fill="#FF9933"/>
                     </svg>
                 </div>
 
-                <!-- Hidden Special Fusion Burger (Reveals on click) -->
+                <!-- Hidden Special Independence Day Fusion Burger (Reveals on click) -->
                 <div class="rath-fusion-burger">
                     <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Plate / Base -->
+                        <!-- Plate Base -->
                         <ellipse cx="60" cy="95" rx="42" ry="12" fill="#e6e6e6" stroke="#cccccc" stroke-width="2" />
                         <!-- Bottom Bun -->
                         <path d="M30,80 C30,90 90,90 90,80 Z" fill="#c68a4c" stroke="#8c5827" stroke-width="1.5" />
-                        <!-- Lettuce (Green) -->
-                        <path d="M25,75 Q35,70 45,75 Q55,70 65,75 Q75,70 85,75 Q95,70 95,75" fill="none" stroke="#2ecc71" stroke-width="4.5" stroke-linecap="round" />
+                        <!-- Mint Green Sauce (Green Band) -->
+                        <path d="M25,75 Q35,70 45,75 Q55,70 65,75 Q75,70 85,75 Q95,70 95,75" fill="none" stroke="#138808" stroke-width="5" stroke-linecap="round" />
                         <!-- Steaming Patty -->
                         <rect x="28" y="65" width="64" height="8" rx="3.5" fill="#5c3a21" stroke="#3d2412" stroke-width="1" />
-                        <!-- Melting Cheese -->
-                        <path d="M27,69 L93,69 L85,77 L70,69 L55,80 L40,69 L30,75 Z" fill="#f1c40f" />
-                        <!-- Tomato Slice -->
-                        <rect x="32" y="59" width="56" height="6" rx="3" fill="#e74c3c" />
+                        <!-- White Mayo/Paneer Layer (White Band) -->
+                        <path d="M27,69 L93,69 L85,77 L70,69 L55,80 L40,69 L30,75 Z" fill="#FFFFFF" stroke="#e0e0e0" stroke-width="0.8"/>
+                        <!-- Saffron Tomato Layer (Saffron Band) -->
+                        <rect x="32" y="59" width="56" height="6" rx="3" fill="#FF9933" />
                         <!-- Top Bun -->
                         <path d="M30,57 C30,30 90,30 90,57 Z" fill="#d99b59" stroke="#8c5827" stroke-width="1.5" />
                         <!-- Sesame Seeds -->
@@ -136,44 +142,46 @@
                         <circle cx="58" cy="40" r="0.75" fill="#ffffff" />
                         <circle cx="68" cy="43" r="0.75" fill="#ffffff" />
                         <circle cx="78" cy="47" r="0.75" fill="#ffffff" />
-                        <!-- Mini Saffron Flag on Burger -->
-                        <line x1="75" y1="46" x2="75" y2="18" stroke="#ffe066" stroke-width="1.5" />
-                        <polygon points="75,18 93,24 75,30" fill="#ff4500" />
-                        <!-- Marigold flowers decorations -->
-                        <circle cx="25" cy="94" r="3" fill="#ffaa00" />
-                        <circle cx="95" cy="94" r="3" fill="#ffaa00" />
+                        <!-- Tricolor Flag Pick on Burger -->
+                        <line x1="75" y1="46" x2="75" y2="12" stroke="#d4af37" stroke-width="1.5" />
+                        <polygon points="75,12 95,17 75,22" fill="#FF9933" />
+                        <polygon points="75,17 95,22 75,27" fill="#FFFFFF" />
+                        <polygon points="75,22 95,27 75,32" fill="#138808" />
                     </svg>
                 </div>
 
-                <!-- Clickable Temple Bell -->
-                <div class="temple-bell" id="temple-bell">
+                <!-- Clickable Ashoka Chakra Freedom Wheel -->
+                <div class="temple-bell" id="temple-bell" title="Click to Celebrate Independence Day!">
                     <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Top Hanging Loop -->
-                        <circle cx="50" cy="18" r="8" fill="none" stroke="#d4af37" stroke-width="3" />
-                        <!-- Bell Body -->
-                        <path d="M35,70 C35,40 65,40 65,70 Z" fill="#ffe066" stroke="#d4af37" stroke-width="2" />
-                        <!-- Bell Flared Rim -->
-                        <path d="M30,70 L70,70 L75,80 L25,80 Z" fill="#d4af37" stroke="#ffe066" stroke-width="1.5" />
-                        <!-- Clapper (Ringer) -->
-                        <circle cx="50" cy="85" r="5" fill="#ffaa00" />
-                        <line x1="50" y1="80" x2="50" y2="85" stroke="#d4af37" stroke-width="3" />
-                        <!-- Floral Garland -->
-                        <circle cx="42" cy="30" r="3.5" fill="#ffaa00" />
-                        <circle cx="50" cy="32" r="3.5" fill="#ff4500" />
-                        <circle cx="58" cy="30" r="3.5" fill="#ffaa00" />
+                        <circle cx="50" cy="50" r="42" fill="#0d1b2a" stroke="#FF9933" stroke-width="3"/>
+                        <circle cx="50" cy="50" r="36" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="30" fill="none" stroke="#138808" stroke-width="2"/>
+                        
+                        <!-- Ashoka Chakra Wheel -->
+                        <circle cx="50" cy="50" r="20" fill="#000080" stroke="#ffd700" stroke-width="1.5"/>
+                        <circle cx="50" cy="50" r="4" fill="#ffffff"/>
+                        
+                        <!-- 8 Main Spokes -->
+                        <line x1="50" y1="30" x2="50" y2="70" stroke="#ffffff" stroke-width="1.5"/>
+                        <line x1="30" y1="50" x2="70" y2="50" stroke="#ffffff" stroke-width="1.5"/>
+                        <line x1="35.8" y1="35.8" x2="64.2" y2="64.2" stroke="#ffffff" stroke-width="1.5"/>
+                        <line x1="35.8" y1="64.2" x2="64.2" y2="35.8" stroke="#ffffff" stroke-width="1.5"/>
+                        
+                        <!-- Celebration Star Top -->
+                        <path d="M50 3 L52 10 L58 10 L53 14 L55 20 L50 16 L45 20 L47 14 L42 10 L48 10 Z" fill="#ffd700"/>
                     </svg>
                 </div>
 
-                <!-- Jai Jagannath Neon Message -->
-                <div class="rath-celebration" id="rath-celebration">JAI JAGANNATH! 🚩🍔</div>
+                <!-- Patriotic Celebration Message -->
+                <div class="rath-celebration" id="rath-celebration">VANDE MATARAM! ðŸ‡®ðŸ‡³ðŸ”</div>
                 
-                <!-- Confetti Prasad Rain -->
-                <div class="feast-item p1">🌸</div>
-                <div class="feast-item p2">🍔</div>
-                <div class="feast-item p3">🍕</div>
-                <div class="feast-item p4">🍟</div>
-                <div class="feast-item p5">🚩</div>
-                <div class="feast-item p6">✨</div>
+                <!-- Celebration Confetti Rain -->
+                <div class="feast-item p1">ðŸ‡®ðŸ‡³</div>
+                <div class="feast-item p2">ðŸ”</div>
+                <div class="feast-item p3">ðŸ§¡</div>
+                <div class="feast-item p4">ðŸ¤</div>
+                <div class="feast-item p5">ðŸ’š</div>
+                <div class="feast-item p6">âœ¨</div>
             </div>
         </div>
     </section>
@@ -335,7 +343,7 @@
         <div class="promo-modal-overlay"></div>
         <div class="promo-modal-content">
             <button class="promo-modal-close" id="close-promo-modal-btn" aria-label="Close Promo Modal"><i class="fas fa-times"></i></button>
-            <img src="assets/promo_poster.webp" alt="Durga Puja Celebration Hexagon Cafe" class="promo-poster-img">
+            <img src="assets/promo_poster.webp" alt="Independence Day Celebration" class="promo-poster-img">
         </div>
     </div>
 
