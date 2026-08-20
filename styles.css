@@ -514,21 +514,18 @@ section {
 }
 
 /* ============================================================
-   INTERACTIVE SOCCER PITCH & FIFA 2026 WORLD CUP ANIMATION
-   ============================================================ */
-/* ============================================================
-   INTERACTIVE INDEPENDENCE DAY SPECIAL ALTAR
+   INTERACTIVE RAKHI PURNIMA SPECIAL ALTAR
    ============================================================ */
 .rath-feast-container {
     position: relative;
     width: 190px;
     height: 190px;
-    background: radial-gradient(circle at center, #0d1b2a 0%, #050c17 100%);
+    background: radial-gradient(circle at center, #260A13 0%, #120408 100%);
     border-radius: var(--radius-md);
-    border: 2px solid rgba(255, 153, 51, 0.45);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8), 
-                inset 0 0 25px rgba(19, 136, 8, 0.2),
-                0 0 12px rgba(255, 153, 51, 0.3);
+    border: 2px solid rgba(255, 193, 7, 0.55);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.85), 
+                inset 0 0 25px rgba(233, 30, 99, 0.25),
+                0 0 14px rgba(255, 193, 7, 0.35);
     overflow: hidden;
     cursor: pointer;
     perspective: 500px;
@@ -538,10 +535,10 @@ section {
 }
 
 .rath-feast-container:hover {
-    border-color: #FF9933;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.9), 
-                inset 0 0 25px rgba(255, 255, 255, 0.2),
-                0 0 20px rgba(19, 136, 8, 0.4);
+    border-color: #FFD54F;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.95), 
+                inset 0 0 25px rgba(255, 215, 0, 0.3),
+                0 0 22px rgba(233, 30, 99, 0.5);
 }
 
 .temple-arch {
@@ -550,7 +547,7 @@ section {
     left: 5px;
     right: 5px;
     bottom: 5px;
-    border: 1px dashed rgba(255, 153, 51, 0.35);
+    border: 1px dashed rgba(255, 215, 0, 0.4);
     border-radius: var(--radius-md);
     pointer-events: none;
     z-index: 1;
@@ -561,10 +558,10 @@ section {
     top: 15px;
     left: 50%;
     transform: translateX(-50%);
-    width: 65px;
-    height: 78px;
+    width: 72px;
+    height: 72px;
     z-index: 3;
-    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.6));
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.7));
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease;
     animation: trophyFloat 3.5s infinite ease-in-out;
 }
@@ -575,7 +572,7 @@ section {
 }
 
 .rath-feast-container.activated .rath-altar-chariot {
-    filter: drop-shadow(0 0 8px #FF9933) drop-shadow(0 0 15px #138808);
+    filter: drop-shadow(0 0 10px #FFD700) drop-shadow(0 0 18px #E91E63);
     animation: trophyVibrate 0.12s infinite linear;
 }
 
@@ -623,8 +620,8 @@ section {
     position: absolute;
     bottom: 10px;
     left: 50%;
-    width: 66px;
-    height: 66px;
+    width: 68px;
+    height: 68px;
     transform: translate(-50%, 15px) scale(0.6);
     opacity: 0;
     z-index: 2;
@@ -641,7 +638,7 @@ section {
 .rath-feast-container.activated .rath-fusion-burger {
     opacity: 1;
     transform: translate(-50%, 0) scale(1.2);
-    filter: drop-shadow(0 0 8px #FF9933) drop-shadow(0 0 16px #138808);
+    filter: drop-shadow(0 0 10px #FFD700) drop-shadow(0 0 18px #E91E63);
 }
 
 .rath-celebration {
@@ -654,9 +651,9 @@ section {
     font-weight: 900;
     color: #ffffff;
     letter-spacing: 1px;
-    text-shadow: 0 0 8px #FF9933, 
-                 0 0 16px #138808,
-                 0 0 24px #000080;
+    text-shadow: 0 0 10px #FFD700, 
+                 0 0 18px #E91E63, 
+                 0 0 26px #880E4F;
     opacity: 0;
     pointer-events: none;
     z-index: 6;
@@ -1138,12 +1135,10 @@ footer p::after {
     top: 50%;
     transform: translate(-50%, -50%);
     font-family: 'Playfair Display', serif;
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     font-weight: 800;
-    background: linear-gradient(90deg, #D9531E 0%, #000080 50%, #0D6B09 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    letter-spacing: 0.5px;
+    color: #8B1A1A;
     white-space: nowrap;
     opacity: 0;
     pointer-events: none;
