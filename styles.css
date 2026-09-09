@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    HEXAGON CAFE & RESTAURANT — Premium Modern Theme
    ============================================================ */
 
@@ -63,7 +63,7 @@ body.no-scroll {
 }
 
 h1, h2, h3, h4 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', 'Tiro Bangla', serif;
     line-height: 1.2;
 }
 
@@ -436,7 +436,7 @@ section {
 }
 
 .section-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', 'Tiro Bangla', serif;
     font-size: 2.6rem;
     font-weight: 700;
     text-align: center;
@@ -486,7 +486,7 @@ section {
 }
 
 .vibe-text h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', 'Tiro Bangla', serif;
     font-size: 2rem;
     margin-bottom: 1.2rem;
     font-weight: 700;
@@ -901,7 +901,7 @@ section {
 }
 
 .contact-info h2, .social-links h2 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', 'Tiro Bangla', serif;
     font-size: 1.6rem;
     margin-bottom: 1.1rem;
     font-weight: 700;
@@ -1125,7 +1125,7 @@ footer p {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', 'Tiro Bangla', serif;
     font-size: 1.35rem;
     font-weight: 800;
     letter-spacing: 0.5px;
@@ -1325,7 +1325,7 @@ footer p {
 }
 
 .preloader-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', 'Tiro Bangla', serif;
     font-size: 2.8rem;
     font-weight: 700;
     color: var(--text-primary);
@@ -1501,7 +1501,7 @@ footer p {
 }
 
 .quick-panel-banner-content h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', 'Tiro Bangla', serif;
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--text-primary);
@@ -2031,7 +2031,7 @@ footer p {
 }
 
 .ticket-header h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', 'Tiro Bangla', serif;
     font-size: 1.4rem;
     color: var(--text-primary);
     margin-bottom: 0.2rem;
@@ -2666,6 +2666,268 @@ footer p {
     display: none;
 }
 
+/* ============================================================
+   MAIN PAGE THREE-DOT CATEGORY FILTER DROPDOWN
+   ============================================================ */
+/* ============================================================
+   MAIN PAGE THREE-DOT CATEGORY FILTER & ZOOM CONTROLS ROW
+   ============================================================ */
+.menu-filter-controls-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 6px auto 18px auto;
+    width: fit-content;
+    max-width: 100%;
+    z-index: 60;
+    position: relative;
+}
+
+.menu-filter-controls-row .menu-filter-dropdown-wrapper {
+    margin: 0;
+}
+
+.menu-filter-controls-row .menu-zoom-img-btn {
+    flex-shrink: 0;
+}
+
+.menu-filter-dropdown-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: 6px auto 18px auto;
+    width: fit-content;
+    max-width: 100%;
+    z-index: 60;
+}
+
+.menu-filter-dots-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: rgba(26, 26, 26, 0.88);
+    border: 1.5px solid rgba(201, 162, 75, 0.4);
+    color: #ffffff;
+    padding: 8px 18px 8px 12px;
+    border-radius: 30px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45), 0 0 15px rgba(201, 162, 75, 0.15);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    user-select: none;
+}
+
+.menu-filter-dots-btn:hover {
+    border-color: var(--accent-gold, #c9a24b);
+    background: rgba(35, 35, 35, 0.95);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.55), 0 0 20px rgba(201, 162, 75, 0.3);
+}
+
+.menu-filter-dots-btn .three-dots-icon-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, var(--accent-gold, #c9a24b), var(--accent-amber, #dab65e));
+    color: #121212;
+    border-radius: 50%;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 8px rgba(201, 162, 75, 0.4);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.menu-filter-dots-btn:hover .three-dots-icon-box {
+    transform: rotate(90deg) scale(1.08);
+}
+
+.menu-filter-dots-btn .current-filter-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #f5f1e8;
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.menu-filter-dots-btn .current-filter-label i {
+    color: var(--accent-gold, #c9a24b);
+}
+
+.menu-filter-dots-btn .filter-dropdown-arrow {
+    font-size: 0.78rem;
+    color: var(--accent-gold, #c9a24b);
+    margin-left: 4px;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.menu-filter-dropdown-wrapper.open .menu-filter-dots-btn .filter-dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.menu-filter-dropdown-wrapper.open .menu-filter-dots-btn {
+    border-color: #ffd700;
+    box-shadow: 0 0 25px rgba(201, 162, 75, 0.4);
+    background: rgba(30, 30, 30, 0.98);
+}
+
+.menu-filter-dropdown-wrapper.open .menu-filter-dots-btn .three-dots-icon-box {
+    transform: rotate(90deg);
+}
+
+/* Dropdown Menu Popup List */
+.menu-filter-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px) scale(0.96);
+    min-width: 250px;
+    max-width: 320px;
+    width: max-content;
+    background: rgba(18, 18, 18, 0.97);
+    border: 1.5px solid rgba(201, 162, 75, 0.45);
+    border-radius: 18px;
+    padding: 10px;
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.85), 0 0 25px rgba(201, 162, 75, 0.2);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s cubic-bezier(0.25, 0.8, 0.25, 1),
+                transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+                visibility 0.25s;
+    z-index: 100;
+}
+
+.menu-filter-dropdown-wrapper.open .menu-filter-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.menu-filter-dropdown-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 12px 10px 12px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid rgba(201, 162, 75, 0.2);
+    color: var(--accent-gold, #c9a24b);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.menu-filter-dropdown-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 140px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 4px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(201, 162, 75, 0.6) rgba(255, 255, 255, 0.05);
+}
+
+.menu-filter-dropdown-list::-webkit-scrollbar {
+    width: 5px;
+}
+
+.menu-filter-dropdown-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.menu-filter-dropdown-list::-webkit-scrollbar-thumb {
+    background: rgba(201, 162, 75, 0.6);
+    border-radius: 4px;
+}
+
+.menu-filter-dropdown-list::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-gold, #c9a24b);
+}
+
+/* Individual Category Item in Dropdown List */
+.menu-filter-dropdown-list .menu-tab-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 9px 14px;
+    border-radius: 12px;
+    background: rgba(30, 30, 30, 0.65);
+    border: 1px solid rgba(201, 162, 75, 0.15);
+    color: #e8e8e8;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.22s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.menu-filter-dropdown-list .menu-tab-btn .tab-btn-content {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu-filter-dropdown-list .menu-tab-btn i.tab-icon {
+    font-size: 0.95rem;
+    color: var(--accent-gold, #c9a24b);
+    width: 20px;
+    text-align: center;
+    transition: transform 0.25s ease;
+}
+
+.menu-filter-dropdown-list .menu-tab-btn .active-indicator-icon {
+    font-size: 0.85rem;
+    color: #121212;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.menu-filter-dropdown-list .menu-tab-btn:hover {
+    background: rgba(201, 162, 75, 0.2);
+    border-color: rgba(201, 162, 75, 0.5);
+    color: #ffffff;
+    transform: translateX(4px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.menu-filter-dropdown-list .menu-tab-btn:hover i.tab-icon {
+    transform: scale(1.15);
+}
+
+.menu-filter-dropdown-list .menu-tab-btn.active {
+    background: linear-gradient(135deg, var(--accent-gold, #c9a24b), var(--accent-amber, #dab65e));
+    border-color: #ffd700;
+    color: #121212;
+    font-weight: 700;
+    box-shadow: 0 4px 16px rgba(201, 162, 75, 0.4);
+    transform: none;
+}
+
+.menu-filter-dropdown-list .menu-tab-btn.active i.tab-icon {
+    color: #121212;
+}
+
+.menu-filter-dropdown-list .menu-tab-btn.active .active-indicator-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
 /* Category Filter Tabs */
 .menu-category-tabs {
     display: flex;
@@ -2924,6 +3186,10 @@ footer p {
 }
 
 @media (max-width: 600px) {
+    .menu-filter-controls-row {
+        gap: 10px;
+        margin: 4px auto 14px auto;
+    }
     .main-menu-section {
         padding: 28px 10px 18px;
     }
@@ -3095,7 +3361,7 @@ footer p {
 }
 
 .full-menu-modal-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', 'Tiro Bangla', serif;
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--text-primary, #ffffff);
@@ -3189,7 +3455,7 @@ footer p {
 }
 
 .full-menu-modal-top-section .full-menu-hero h1 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', 'Tiro Bangla', serif;
     font-size: 2.1rem;
     font-weight: 800;
     color: var(--text-primary, #ffffff);

@@ -1,4 +1,4 @@
-// ============================================================
+﻿// ============================================================
 // GUARANTEED PRELOADER INITIALIZATION & SAFETY FALLBACK
 // ============================================================
 (function() {
@@ -257,11 +257,40 @@ if (reviewItems.length > 0) {
 }
 
 // ============================================================
-// MAIN RESTAURANT MENU HORIZONTAL SCROLL & CATEGORY FILTER
+// MAIN RESTAURANT MENU HORIZONTAL SCROLL & THREE-DOT CATEGORY FILTER
 // ============================================================
 const mainRestaurantMenuScroll = document.getElementById('main-restaurant-menu-scroll');
-const inPageMenuTabs = document.querySelectorAll('.main-menu-section .menu-category-tabs .menu-tab-btn, .menu-tab-btn');
+const mainMenuFilterWrapper = document.getElementById('main-menu-filter-dropdown-wrapper');
+const mainMenuFilterBtn = document.getElementById('main-menu-filter-dots-btn');
+const mainMenuFilterDropdown = document.getElementById('main-menu-filter-dropdown-menu');
+const mainCurrentFilterLabel = document.getElementById('main-current-filter-label');
+const inPageMenuTabs = document.querySelectorAll('#main-menu-filter-dropdown-menu .menu-tab-btn, .main-menu-section .menu-tab-btn');
 const inPageFoodCards = document.querySelectorAll('#main-restaurant-menu-scroll .food-menu-card, .main-menu-section .food-menu-card');
+
+// Toggle Dropdown when clicking three-dot button
+if (mainMenuFilterBtn && mainMenuFilterWrapper) {
+    mainMenuFilterBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = mainMenuFilterWrapper.classList.toggle('open');
+        mainMenuFilterBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    // Close Dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!mainMenuFilterWrapper.contains(e.target)) {
+            mainMenuFilterWrapper.classList.remove('open');
+            mainMenuFilterBtn.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mainMenuFilterWrapper.classList.contains('open')) {
+            mainMenuFilterWrapper.classList.remove('open');
+            mainMenuFilterBtn.setAttribute('aria-expanded', 'false');
+        }
+    });
+}
 
 if (mainRestaurantMenuScroll) {
     let isMouseDownMain = false;
@@ -293,15 +322,22 @@ if (mainRestaurantMenuScroll) {
 
 if (inPageMenuTabs.length > 0) {
     inPageMenuTabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            const tabsContainer = tab.closest('.menu-category-tabs');
-            if (tabsContainer) {
-                const siblingTabs = tabsContainer.querySelectorAll('.menu-tab-btn');
-                siblingTabs.forEach(t => t.classList.remove('active'));
-            }
+        tab.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const siblingTabs = document.querySelectorAll('#main-menu-filter-dropdown-menu .menu-tab-btn, .main-menu-section .menu-tab-btn');
+            siblingTabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
 
             const selectedCategory = tab.getAttribute('data-category');
+
+            // Update main button label
+            if (mainCurrentFilterLabel) {
+                const icon = tab.querySelector('.tab-icon, i:not(.active-indicator-icon)');
+                const titleSpan = tab.querySelector('.tab-title');
+                const title = titleSpan ? titleSpan.textContent : tab.textContent.trim();
+                const iconClass = icon ? icon.className : 'fas fa-utensils';
+                mainCurrentFilterLabel.innerHTML = `<i class="${iconClass}"></i> <span>${title}</span>`;
+            }
 
             if (inPageFoodCards.length > 0) {
                 inPageFoodCards.forEach(card => {
@@ -314,15 +350,17 @@ if (inPageMenuTabs.length > 0) {
                 });
             }
 
-            // Smoothly center clicked tab inside single line tabs container to bring next options into view
-            if (tabsContainer) {
-                const targetScroll = tab.offsetLeft - (tabsContainer.clientWidth / 2) + (tab.offsetWidth / 2);
-                tabsContainer.scrollTo({ left: targetScroll, behavior: 'smooth' });
-            }
-
             // Smoothly reset track to beginning when category is clicked
             if (mainRestaurantMenuScroll) {
                 mainRestaurantMenuScroll.scrollTo({ left: 0, behavior: 'smooth' });
+            }
+
+            // Close dropdown menu after selection
+            if (mainMenuFilterWrapper) {
+                mainMenuFilterWrapper.classList.remove('open');
+                if (mainMenuFilterBtn) {
+                    mainMenuFilterBtn.setAttribute('aria-expanded', 'false');
+                }
             }
         });
     });

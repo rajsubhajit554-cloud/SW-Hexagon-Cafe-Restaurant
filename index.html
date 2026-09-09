@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
@@ -30,7 +30,7 @@
                 <span class="logo-text">Hexagon Cafe & Restaurant</span>
             </div>
         </div>
-        <span class="rath-yatra-header-text">HAPPY TEACHERS DAY</span>
+        <span class="rath-yatra-header-text">হ্যালো এভরিওয়ান</span>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#menu">Menu</a></li>
@@ -71,30 +71,76 @@
         <div class="menu-header-wrapper">
             <div class="menu-eyebrow-container">
                 <span class="menu-eyebrow">আমাদের স্পেশাল মেনু (Our Menu)</span>
-                <button type="button" class="menu-zoom-img-btn" id="open-full-menu-modal-btn" title="Open Complete Menu Card (সম্পূর্ণ মেনু)">
-                    <img src="assets/zoom_full_menu_icon.webp" alt="Zoom Full Menu" class="zoom-full-menu-img">
-                </button>
             </div>
         </div>
 
         <!-- Menu Category Filter Tabs -->
-        <div class="menu-category-tabs">
-            <button class="menu-tab-btn active" data-category="all">
-                <i class="fas fa-utensils"></i> All Items
+                <!-- Menu Category Filter Dropdown (Three-Dot Filter Menu) -->
+        <!-- Menu Filter and Zoom Controls Row -->
+        <div class="menu-filter-controls-row">
+            <div class="menu-filter-dropdown-wrapper" id="main-menu-filter-dropdown-wrapper">
+            <button type="button" class="menu-filter-dots-btn" id="main-menu-filter-dots-btn" aria-expanded="false" aria-haspopup="true" title="Filter Menu">
+                <span class="three-dots-icon-box">
+                    <i class="fas fa-ellipsis-v"></i>
+                </span>
+                <span class="current-filter-label" id="main-current-filter-label">
+                    <i class="fas fa-utensils"></i>
+                    <span>All Items</span>
+                </span>
+                <i class="fas fa-chevron-down filter-dropdown-arrow"></i>
             </button>
-            <button class="menu-tab-btn" data-category="thali">
-                <i class="fas fa-bowl-rice"></i> Bengali Thali
-            </button>
-            <button class="menu-tab-btn" data-category="snacks">
-                <i class="fas fa-burger"></i> Breakfast & Snacks
-            </button>
-            <button class="menu-tab-btn" data-category="beverages">
-                <i class="fas fa-mug-hot"></i> Tea & Coffee
-            </button>
-            <button class="menu-tab-btn" data-category="extras">
-                <i class="fas fa-plate-wheat"></i> Sides & Extras
-            </button>
+
+            <!-- Dropdown List of Category Filter Options -->
+            <div class="menu-filter-dropdown-menu" id="main-menu-filter-dropdown-menu">
+                <div class="menu-filter-dropdown-header">
+                    <span><i class="fas fa-filter"></i> Filter Category</span>
+                </div>
+                <div class="menu-filter-dropdown-list">
+                    <button type="button" class="menu-tab-btn active" data-category="all">
+                        <span class="tab-btn-content">
+                            <i class="fas fa-utensils tab-icon"></i>
+                            <span class="tab-title">All Items</span>
+                        </span>
+                        <i class="fas fa-check active-indicator-icon"></i>
+                    </button>
+                    <button type="button" class="menu-tab-btn" data-category="thali">
+                        <span class="tab-btn-content">
+                            <i class="fas fa-bowl-rice tab-icon"></i>
+                            <span class="tab-title">Bengali Thali</span>
+                        </span>
+                        <i class="fas fa-check active-indicator-icon"></i>
+                    </button>
+                    <button type="button" class="menu-tab-btn" data-category="snacks">
+                        <span class="tab-btn-content">
+                            <i class="fas fa-burger tab-icon"></i>
+                            <span class="tab-title">Breakfast & Snacks</span>
+                        </span>
+                        <i class="fas fa-check active-indicator-icon"></i>
+                    </button>
+                    <button type="button" class="menu-tab-btn" data-category="beverages">
+                        <span class="tab-btn-content">
+                            <i class="fas fa-mug-hot tab-icon"></i>
+                            <span class="tab-title">Tea & Coffee</span>
+                        </span>
+                        <i class="fas fa-check active-indicator-icon"></i>
+                    </button>
+                    <button type="button" class="menu-tab-btn" data-category="extras">
+                        <span class="tab-btn-content">
+                            <i class="fas fa-plate-wheat tab-icon"></i>
+                            <span class="tab-title">Sides & Extras</span>
+                        </span>
+                        <i class="fas fa-check active-indicator-icon"></i>
+                    </button>
+                </div>
+            </div>
         </div>
+
+            <!-- Zoom Full Menu Button on Right Side of Filter -->
+            <button type="button" class="menu-zoom-img-btn" id="open-full-menu-modal-btn" title="Open Complete Menu Card (সম্পূর্ণ মেনু)">
+                    <img src="assets/zoom_full_menu_icon.webp" alt="Zoom Full Menu" class="zoom-full-menu-img">
+                </button>
+        </div>
+        
 
         <!-- Menu Cards Horizontal Side-Scroll Wrapper -->
         <div class="main-menu-scroll-wrapper">
