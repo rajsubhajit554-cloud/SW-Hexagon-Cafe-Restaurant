@@ -2996,9 +2996,12 @@ footer p {
     gap: 16px;
     overflow-x: auto;
     overflow-y: hidden;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
+    scroll-behavior: auto;
+    scroll-snap-type: x proximity;
     -webkit-overflow-scrolling: touch;
+    touch-action: pan-x pan-y;
+    overscroll-behavior-x: contain;
+    will-change: scroll-position;
     padding: 8px 6px 18px;
     width: 100%;
     cursor: grab;
@@ -3025,7 +3028,7 @@ footer p {
     border-radius: 6px;
 }
 
-/* Compact Floating Food Menu Card (Pure Light Theme) */
+/* Compact Food Menu Card (Ultra-Smooth 60/120fps Rendering) */
 .food-menu-card {
     flex: 0 0 185px;
     scroll-snap-align: start;
@@ -3037,28 +3040,23 @@ footer p {
     flex-direction: column;
     padding: 12px;
     text-align: center;
-    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.07) !important;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease, box-shadow 0.35s ease;
-    animation: floatMenuItem 4.5s ease-in-out infinite alternate;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.25s ease, box-shadow 0.25s ease;
     user-select: none;
     position: relative;
+    content-visibility: auto;
+    contain-intrinsic-size: 185px 280px;
+    contain: layout paint;
 }
-
-.food-menu-card:nth-child(even) { animation-delay: 0.8s; }
-.food-menu-card:nth-child(3n) { animation-delay: 1.6s; }
-.food-menu-card:nth-child(4n) { animation-delay: 2.4s; }
 
 .food-menu-card.hidden {
     display: none !important;
 }
 
 .food-menu-card:hover {
-    animation-play-state: paused;
-    transform: translateY(-8px) scale(1.03);
+    transform: translateY(-6px) scale(1.02);
     border-color: var(--accent-gold) !important;
-    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12), var(--glow-gold) !important;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12), var(--glow-gold) !important;
 }
 
 .food-card-badge {
@@ -3138,7 +3136,7 @@ footer p {
     display: block;
     position: relative;
     z-index: 1;
-    transition: transform 0.5s ease;
+    transition: transform 0.4s ease;
     pointer-events: none;
 }
 
@@ -3148,7 +3146,7 @@ footer p {
 }
 
 .food-menu-card:hover .food-card-img-box img {
-    transform: scale(1.08);
+    transform: scale(1.06);
 }
 
 .food-card-body {
@@ -3207,11 +3205,6 @@ footer p {
     box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
 }
 
-@keyframes floatMenuItem {
-    0% { transform: translateY(0px); }
-    100% { transform: translateY(-4px); }
-}
-
 @media (max-width: 600px) {
     .menu-filter-controls-row {
         gap: 10px;
@@ -3254,12 +3247,6 @@ footer p {
     }
 }
 
-/* Shimmer ray sweep across button */
-}
-
-@media (max-width: 600px) {
-    }
-
 /* ---- Optimized Compact Gap for Customer Reviews Photo Gallery ---- */
 .reviews-section {
     padding: 24px 5% 20px !important;
@@ -3283,12 +3270,6 @@ footer p {
     margin-top: 0.8rem !important;
     gap: 8px !important;
 }
-
-/* Shimmer ray sweep across button */
-}
-
-@media (max-width: 600px) {
-    }
 
 /* ============================================================
    IN-PAGE FULL MENU POPUP MODAL STYLES (Adaptive Theme)
@@ -3627,8 +3608,11 @@ footer p {
     display: flex;
     flex-direction: column;
     position: relative;
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06) !important;
+    content-visibility: auto;
+    contain-intrinsic-size: 210px 280px;
+    contain: layout paint;
 }
 
 .compact-grid .food-menu-card:hover {

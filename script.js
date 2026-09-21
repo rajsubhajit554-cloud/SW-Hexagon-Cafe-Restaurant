@@ -1,4 +1,4 @@
-﻿// ============================================================
+// ============================================================
 // GUARANTEED PRELOADER INITIALIZATION & SAFETY FALLBACK
 // ============================================================
 (function() {
@@ -28,17 +28,20 @@
     setTimeout(dismissPreloader, 1500);
 })();
 
-// Navbar Scroll Effect
-window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (navbar) {
-        if (window.scrollY > 50) {
-            navbar.classList.add('navbar-scrolled');
-        } else {
-            navbar.classList.remove('navbar-scrolled');
+// Navbar Scroll Effect (Optimized with Passive Listener & State Cache)
+const navbar = document.querySelector('.navbar');
+if (navbar) {
+    let isScrolled = false;
+    const updateNavbar = () => {
+        const scrolled = window.scrollY > 50;
+        if (scrolled !== isScrolled) {
+            isScrolled = scrolled;
+            navbar.classList.toggle('navbar-scrolled', isScrolled);
         }
-    }
-});
+    };
+    window.addEventListener('scroll', updateNavbar, { passive: true });
+    updateNavbar();
+}
 
 // Mobile & Desktop Hamburger Menu Toggle
 const hamburger = document.querySelector('.hamburger');
@@ -70,35 +73,39 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Close menu when user scrolls the page
+// Close menu when user scrolls the page (Passive)
 window.addEventListener('scroll', () => {
     if (navLinks && navLinks.classList.contains('nav-active')) {
         navLinks.classList.remove('nav-active');
     }
-});
+}, { passive: true });
 
-// Reveal Elements on Scroll
+// Reveal Elements on Scroll (High-Performance IntersectionObserver without layout thrashing)
 const revealElements = document.querySelectorAll('.reviews-slider-container, .vibe-text, .contact-container, .main-menu-section');
 
-const revealOnScroll = () => {
-    const windowHeight = window.innerHeight;
-    const elementVisible = 150;
+if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                entry.target.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
     revealElements.forEach((el) => {
-        const elementTop = el.getBoundingClientRect().top;
-        if (elementTop < windowHeight - elementVisible) {
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-            el.style.transition = 'all 0.8s ease-out';
-        } else if (!el.style.opacity) {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(50px)';
-        }
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(40px)';
+        revealObserver.observe(el);
     });
-};
-
-window.addEventListener('scroll', revealOnScroll);
-revealOnScroll();
+} else {
+    revealElements.forEach((el) => {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+    });
+}
 
 // Banner Image Slider
 const bannerImages = document.querySelectorAll('.hero-bg img');
@@ -293,31 +300,102 @@ if (mainMenuFilterBtn && mainMenuFilterWrapper) {
 }
 
 if (mainRestaurantMenuScroll) {
-    let isMouseDownMain = false;
-    let startXMain = 0;
-    let scrollLeftMain = 0;
+    let isDown = false;
+    let startX = 0;
+    let scrollStart = 0;
+    let lastX = 0;
+    let lastTime = 0;
+    let velocity = 0;
+    let momentumRAF = null;
+    let hasMoved = false;
+
+    const stopMomentum = () => {
+        if (momentumRAF) {
+            cancelAnimationFrame(momentumRAF);
+            momentumRAF = null;
+        }
+    };
 
     mainRestaurantMenuScroll.addEventListener('mousedown', (e) => {
-        isMouseDownMain = true;
-        startXMain = e.pageX - mainRestaurantMenuScroll.offsetLeft;
-        scrollLeftMain = mainRestaurantMenuScroll.scrollLeft;
+        if (e.button !== 0) return;
+        stopMomentum();
+        isDown = true;
+        hasMoved = false;
+        startX = e.pageX - mainRestaurantMenuScroll.offsetLeft;
+        scrollStart = mainRestaurantMenuScroll.scrollLeft;
+        lastX = e.pageX;
+        lastTime = performance.now();
+        velocity = 0;
+        mainRestaurantMenuScroll.style.cursor = 'grabbing';
+        mainRestaurantMenuScroll.style.userSelect = 'none';
     });
 
-    mainRestaurantMenuScroll.addEventListener('mouseleave', () => {
-        isMouseDownMain = false;
-    });
+    window.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        const currentX = e.pageX;
+        const now = performance.now();
+        const deltaX = currentX - lastX;
+        const dt = now - lastTime;
+        
+        if (Math.abs(currentX - (startX + mainRestaurantMenuScroll.offsetLeft)) > 5) {
+            hasMoved = true;
+        }
 
-    mainRestaurantMenuScroll.addEventListener('mouseup', () => {
-        isMouseDownMain = false;
-    });
+        if (dt > 0) {
+            velocity = deltaX / dt;
+        }
+        lastX = currentX;
+        lastTime = now;
 
-    mainRestaurantMenuScroll.addEventListener('mousemove', (e) => {
-        if (!isMouseDownMain) return;
-        e.preventDefault();
         const x = e.pageX - mainRestaurantMenuScroll.offsetLeft;
-        const walk = (x - startXMain) * 1.5;
-        mainRestaurantMenuScroll.scrollLeft = scrollLeftMain - walk;
-    });
+        const walk = x - startX;
+        mainRestaurantMenuScroll.scrollLeft = scrollStart - walk;
+    }, { passive: true });
+
+    const endDrag = () => {
+        if (!isDown) return;
+        isDown = false;
+        mainRestaurantMenuScroll.style.cursor = 'grab';
+        mainRestaurantMenuScroll.style.removeProperty('user-select');
+
+        // Apply smooth momentum glide
+        if (Math.abs(velocity) > 0.1) {
+            let currentVelocity = velocity * 16;
+            const friction = 0.94;
+
+            const step = () => {
+                if (Math.abs(currentVelocity) < 0.2 || isDown) {
+                    stopMomentum();
+                    return;
+                }
+                mainRestaurantMenuScroll.scrollLeft -= currentVelocity;
+                currentVelocity *= friction;
+                momentumRAF = requestAnimationFrame(step);
+            };
+            stopMomentum();
+            momentumRAF = requestAnimationFrame(step);
+        }
+    };
+
+    window.addEventListener('mouseup', endDrag);
+
+    // Prevent accidental clicking of links/buttons if user was dragging
+    mainRestaurantMenuScroll.addEventListener('click', (e) => {
+        if (hasMoved) {
+            e.preventDefault();
+            e.stopPropagation();
+            hasMoved = false;
+        }
+    }, true);
+
+    // Smooth horizontal mouse-wheel scrolling
+    mainRestaurantMenuScroll.addEventListener('wheel', (e) => {
+        if (e.deltaY !== 0 && Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+            e.preventDefault();
+            stopMomentum();
+            mainRestaurantMenuScroll.scrollLeft += e.deltaY * 0.9;
+        }
+    }, { passive: false });
 }
 
 if (inPageMenuTabs.length > 0) {
@@ -634,13 +712,6 @@ if (modalCategoryTabs.length > 0) {
             
             filterModalMenu();
         });
-    // Hide/dismiss mobile keypad when Enter / Search key is pressed
-    modalMenuSearchInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.keyCode === 13) {
-            e.preventDefault();
-            modalMenuSearchInput.blur();
-        }
-    });
     });
 }
 
