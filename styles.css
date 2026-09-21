@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    HEXAGON CAFE & RESTAURANT — Premium Modern Theme
    ============================================================ */
 
@@ -3109,6 +3109,26 @@ footer p {
     border: 1px solid var(--glass-border) !important;
     background: var(--bg-dark) !important;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.food-card-img-box::before {
+    content: "\f2e7";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 2rem;
+    color: var(--accent-gold);
+    opacity: 0.35;
+    position: absolute;
+    pointer-events: none;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.food-menu-card:hover .food-card-img-box::before {
+    transform: scale(1.15) rotate(10deg);
+    opacity: 0.6;
 }
 
 .food-card-img-box img {
@@ -3116,8 +3136,15 @@ footer p {
     height: 100%;
     object-fit: cover;
     display: block;
+    position: relative;
+    z-index: 1;
     transition: transform 0.5s ease;
     pointer-events: none;
+}
+
+.food-card-img-box img[src=""],
+.food-card-img-box img:not([src]) {
+    display: none;
 }
 
 .food-menu-card:hover .food-card-img-box img {
