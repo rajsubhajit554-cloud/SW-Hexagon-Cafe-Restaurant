@@ -3325,28 +3325,28 @@ footer p {
 }
 
 .full-menu-modal-header {
-    padding: 10px 24px;
+    padding: 9px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .full-menu-modal-header-left {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
 }
 
 .menu-modal-close-btn {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
+    gap: 6px;
     background: rgba(201, 162, 75, 0.15);
     border: 1px solid var(--accent-gold);
     color: var(--accent-gold);
-    padding: 6px 16px;
-    border-radius: 25px;
+    padding: 6px 14px;
+    border-radius: 20px;
     font-weight: 700;
     font-size: 0.86rem;
     cursor: pointer;
@@ -3362,7 +3362,7 @@ footer p {
 
 .full-menu-modal-title {
     font-family: 'Playfair Display', 'Tiro Bangla', serif;
-    font-size: 1.2rem;
+    font-size: 1.22rem;
     font-weight: 700;
     color: var(--text-primary, #ffffff);
 }
@@ -3384,8 +3384,8 @@ footer p {
     background: rgba(201, 162, 75, 0.15);
     border: 1px solid var(--accent-gold);
     color: var(--accent-gold);
-    padding: 6px 14px;
-    border-radius: 25px;
+    padding: 6px 13px;
+    border-radius: 20px;
     text-decoration: none;
     font-weight: 700;
     font-size: 0.84rem;
@@ -3404,10 +3404,10 @@ footer p {
     background: linear-gradient(135deg, var(--accent-gold), var(--accent-amber));
     color: #ffffff !important;
     padding: 6px 15px;
-    border-radius: 25px;
+    border-radius: 20px;
     text-decoration: none;
     font-weight: 700;
-    font-size: 0.84rem;
+    font-size: 0.85rem;
     transition: all 0.3s ease;
 }
 
@@ -3420,13 +3420,13 @@ footer p {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     background: var(--bg-card, rgba(255, 255, 255, 0.1));
     border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.2));
     color: var(--text-primary, #ffffff);
-    font-size: 1rem;
+    font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -3444,20 +3444,20 @@ footer p {
     overscroll-behavior: contain;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    padding: 4px 0 60px;
+    padding: 4px 0 50px;
     background: var(--bg-deep, #0d0d0d);
 }
 
 /* Modal Hero */
 .full-menu-modal-top-section .full-menu-hero {
     text-align: center;
-    padding: 20px 20px 10px;
+    padding: 12px 18px 6px;
 }
 
 .full-menu-modal-top-section .full-menu-hero h1 {
     font-family: 'Playfair Display', 'Tiro Bangla', serif;
-    font-size: 2.1rem;
-    font-weight: 800;
+    font-size: 1.45rem;
+    font-weight: 700;
     color: var(--text-primary, #ffffff);
     margin-bottom: 0;
     line-height: 1.25;
@@ -3466,34 +3466,48 @@ footer p {
 .full-menu-modal-top-section .full-menu-hero h1 .bengali-heading {
     color: var(--accent-gold);
     display: inline-block;
-    font-size: 1.65rem;
-    margin-left: 12px;
+    font-size: 1.2rem;
+    margin-left: 10px;
     font-family: 'Tiro Bangla', serif;
-    font-weight: 700;
+    font-weight: 600;
 }
 
-/* Modal Controls */
+/* Modal Controls inside Top Section */
 .full-menu-modal-top-section .menu-control-bar {
     max-width: 950px;
     margin: 0 auto;
-    padding: 8px 20px 4px;
+    padding: 8px 20px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
 }
 
-.full-menu-modal-top-section .menu-category-tabs {
-    margin-bottom: 0 !important;
-    padding-bottom: 2px !important;
+.full-menu-modal-top-section .menu-filter-dropdown-wrapper {
+    margin: 0 !important;
+    flex-shrink: 0;
+}
+
+.full-menu-modal-top-section .menu-filter-dropdown-menu {
+    left: 0;
+    transform: translateX(0) translateY(-10px) scale(0.96);
+}
+
+.full-menu-modal-top-section .menu-filter-dropdown-wrapper.open .menu-filter-dropdown-menu {
+    transform: translateX(0) translateY(0) scale(1);
 }
 
 .full-menu-modal-top-section .search-box-wrapper {
     position: relative;
-    margin-bottom: 14px;
+    margin-bottom: 0 !important;
+    flex: 1;
+    min-width: 0;
 }
-
 .full-menu-modal-top-section .search-box-wrapper input {
     width: 100%;
     background: var(--bg-card, rgba(24, 24, 24, 0.96));
     border: 1.5px solid var(--glass-border, rgba(201, 162, 75, 0.35));
-    padding: 12px 20px 12px 48px;
+    padding: 12px 42px 12px 48px;
     border-radius: 30px;
     color: var(--text-primary, #ffffff);
     font-size: 0.98rem;
@@ -3513,13 +3527,56 @@ footer p {
     background: var(--bg-card);
 }
 
-.full-menu-modal-top-section .search-box-wrapper i {
+.full-menu-modal-top-section .search-box-wrapper > i.fa-search,
+.full-menu-modal-top-section .search-box-wrapper > i.search-icon {
     position: absolute;
     left: 18px;
     top: 50%;
     transform: translateY(-50%);
     color: var(--accent-gold);
     font-size: 1.1rem;
+    pointer-events: none;
+}
+
+.full-menu-modal-top-section .search-box-wrapper .search-clear-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(201, 162, 75, 0.3);
+    color: var(--accent-gold, #c9a24b);
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: all 0.25s ease;
+    z-index: 3;
+}
+
+.full-menu-modal-top-section .search-box-wrapper .search-clear-btn.visible {
+    display: flex;
+}
+
+.full-menu-modal-top-section .search-box-wrapper .search-clear-btn:hover {
+    background: var(--accent-gold, #c9a24b);
+    color: #000000;
+    border-color: var(--accent-gold, #c9a24b);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 10px rgba(201, 162, 75, 0.4);
+}
+
+.full-menu-modal-top-section .search-box-wrapper .search-clear-btn i {
+    position: static;
+    transform: none;
+    font-size: 0.78rem;
+    color: inherit;
+    pointer-events: none;
+    line-height: 1;
 }
 
 /* Compact Grid inside Modal */
@@ -3572,13 +3629,13 @@ footer p {
 /* Modal Responsive */
 @media (max-width: 768px) {
     .full-menu-modal-header {
-        padding: 8px 12px;
+        padding: 7px 12px;
     }
     .menu-modal-close-btn span {
         display: none;
     }
     .full-menu-modal-title {
-        font-size: 1rem;
+        font-size: 1.08rem;
     }
     .menu-modal-timing-btn span {
         display: none;
@@ -3586,17 +3643,42 @@ footer p {
     .menu-modal-call-btn span {
         display: none;
     }
-    .full-menu-modal-top-section .full-menu-hero h1 {
-        font-size: 1.55rem;
-    }
-    .full-menu-modal-top-section .full-menu-hero h1 .bengali-heading {
-        font-size: 1.25rem;
-        display: block;
-        margin-left: 0;
-        margin-top: 4px;
+    .full-menu-modal-top-section .full-menu-hero {
+        padding: 6px 10px 4px;
     }
     .full-menu-modal-top-section .menu-control-bar {
-        padding: 6px 12px 2px;
+        padding: 6px 12px 8px;
+        gap: 8px;
+    }
+    .full-menu-modal-top-section .menu-filter-dots-btn {
+        padding: 6px 11px 6px 8px;
+        font-size: 0.8rem;
+        gap: 6px;
+    }
+    .full-menu-modal-top-section .menu-filter-dots-btn .three-dots-icon-box {
+        width: 22px;
+        height: 22px;
+        font-size: 0.75rem;
+    }
+    .full-menu-modal-top-section .search-box-wrapper {
+        margin-bottom: 0 !important;
+    }
+    .full-menu-modal-top-section .search-box-wrapper input {
+        padding: 8px 32px 8px 34px;
+        font-size: 0.84rem;
+    }
+    .full-menu-modal-top-section .search-box-wrapper > i.fa-search,
+    .full-menu-modal-top-section .search-box-wrapper > i.search-icon {
+        left: 11px;
+        font-size: 0.85rem;
+    }
+    .full-menu-modal-top-section .search-box-wrapper .search-clear-btn {
+        right: 8px;
+        width: 22px;
+        height: 22px;
+    }
+    .full-menu-modal-top-section .search-box-wrapper .search-clear-btn i {
+        font-size: 0.68rem;
     }
     .full-menu-modal-top-section .menu-category-tabs {
         margin-bottom: 0 !important;

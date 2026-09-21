@@ -462,7 +462,7 @@ if (msgPanelForm) {
 }
 
 // ============================================================
-// IN-PAGE FULL MENU POPUP MODAL LOGIC
+// IN-PAGE FULL MENU POPUP MODAL LOGIC (With Three-Dot Filter Dropdown)
 // ============================================================
 const fullMenuModal = document.getElementById('full-menu-modal');
 const openFullMenuModalBtn = document.getElementById('open-full-menu-modal-btn');
@@ -470,13 +470,49 @@ const closeFullMenuModalBtn = document.getElementById('close-full-menu-modal-btn
 const closeFullMenuIconBtn = document.getElementById('close-full-menu-icon-btn');
 const fullMenuModalOverlay = document.getElementById('full-menu-modal-overlay');
 const modalMenuSearchInput = document.getElementById('modal-menu-search-input');
-const modalCategoryTabs = document.querySelectorAll('#modal-menu-category-tabs .menu-tab-btn, .full-menu-modal .menu-tab-btn');
+const modalMenuSearchClearBtn = document.getElementById('modal-menu-search-clear');
+const modalMenuFilterWrapper = document.getElementById('modal-menu-filter-dropdown-wrapper');
+const modalMenuFilterBtn = document.getElementById('modal-menu-filter-dots-btn');
+const modalCurrentFilterLabel = document.getElementById('modal-current-filter-label');
+const modalCategoryTabs = document.querySelectorAll('#modal-menu-filter-dropdown-menu .menu-tab-btn, #modal-menu-category-tabs .menu-tab-btn, .full-menu-modal .menu-tab-btn');
 const modalFoodCards = document.querySelectorAll('#modal-full-menu-grid .food-menu-card, .full-menu-modal .food-menu-card');
 const modalNoResultsMsg = document.getElementById('modal-no-results-msg');
 const modalTimingBtn = document.getElementById('modal-timing-btn');
 const modalOrderTimingsSection = document.getElementById('modal-order-timings');
 
 let modalActiveCategory = 'all';
+
+// Modal 3-Dot Filter Dropdown Toggle
+if (modalMenuFilterBtn && modalMenuFilterWrapper) {
+    modalMenuFilterBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = modalMenuFilterWrapper.classList.toggle('open');
+        modalMenuFilterBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!modalMenuFilterWrapper.contains(e.target)) {
+            modalMenuFilterWrapper.classList.remove('open');
+            modalMenuFilterBtn.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modalMenuFilterWrapper.classList.contains('open')) {
+            modalMenuFilterWrapper.classList.remove('open');
+            modalMenuFilterBtn.setAttribute('aria-expanded', 'false');
+        }
+    });
+}
+
+function updateModalSearchClearBtn() {
+    if (!modalMenuSearchClearBtn || !modalMenuSearchInput) return;
+    if (modalMenuSearchInput.value.length > 0) {
+        modalMenuSearchClearBtn.classList.add('visible');
+    } else {
+        modalMenuSearchClearBtn.classList.remove('visible');
+    }
+}
 
 function filterModalMenu() {
     if (!modalFoodCards || modalFoodCards.length === 0) return;
@@ -520,9 +556,19 @@ function openFullMenuModal() {
                 }
             });
         }
+        if (modalCurrentFilterLabel) {
+            modalCurrentFilterLabel.innerHTML = `<i class="fas fa-utensils"></i> <span>All Items</span>`;
+        }
+        if (modalMenuFilterWrapper) {
+            modalMenuFilterWrapper.classList.remove('open');
+            if (modalMenuFilterBtn) {
+                modalMenuFilterBtn.setAttribute('aria-expanded', 'false');
+            }
+        }
         if (modalMenuSearchInput) {
             modalMenuSearchInput.value = '';
         }
+        updateModalSearchClearBtn();
         filterModalMenu();
     }
 }
@@ -557,21 +603,35 @@ if (fullMenuModalOverlay) {
 
 if (modalCategoryTabs.length > 0) {
     modalCategoryTabs.forEach(tab => {
-        tab.addEventListener('click', () => {
+        tab.addEventListener('click', (e) => {
+            e.stopPropagation();
             modalCategoryTabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
             modalActiveCategory = tab.getAttribute('data-category');
+
+            // Update modal button label
+            if (modalCurrentFilterLabel) {
+                const icon = tab.querySelector('.tab-icon, i:not(.active-indicator-icon)');
+                const titleSpan = tab.querySelector('.tab-title');
+                const title = titleSpan ? titleSpan.textContent : tab.textContent.trim();
+                const iconClass = icon ? icon.className : 'fas fa-utensils';
+                modalCurrentFilterLabel.innerHTML = `<i class="${iconClass}"></i> <span>${title}</span>`;
+            }
+
+            // Close modal dropdown after selection
+            if (modalMenuFilterWrapper) {
+                modalMenuFilterWrapper.classList.remove('open');
+                if (modalMenuFilterBtn) {
+                    modalMenuFilterBtn.setAttribute('aria-expanded', 'false');
+                }
+            }
             
             // Clear search input on tab selection so category items are clearly displayed
             if (modalMenuSearchInput && modalMenuSearchInput.value.trim() !== '') {
                 modalMenuSearchInput.value = '';
+                updateModalSearchClearBtn();
             }
             
-            const modalTabsContainer = tab.closest('.menu-category-tabs');
-            if (modalTabsContainer) {
-                const targetScroll = tab.offsetLeft - (modalTabsContainer.clientWidth / 2) + (tab.offsetWidth / 2);
-                modalTabsContainer.scrollTo({ left: targetScroll, behavior: 'smooth' });
-            }
             filterModalMenu();
         });
     });
@@ -579,6 +639,7 @@ if (modalCategoryTabs.length > 0) {
 
 if (modalMenuSearchInput) {
     modalMenuSearchInput.addEventListener('input', () => {
+        updateModalSearchClearBtn();
         const query = modalMenuSearchInput.value.toLowerCase().trim();
         // If searching with a query while on a specific filter tab, switch tab to 'all' so UI reflects all matching items
         if (query !== '' && modalActiveCategory !== 'all') {
@@ -587,17 +648,25 @@ if (modalMenuSearchInput) {
                 modalCategoryTabs.forEach(t => {
                     if (t.getAttribute('data-category') === 'all') {
                         t.classList.add('active');
-                        const modalTabsContainer = t.closest('.menu-category-tabs');
-                        if (modalTabsContainer) {
-                            modalTabsContainer.scrollTo({ left: 0, behavior: 'smooth' });
-                        }
                     } else {
                         t.classList.remove('active');
                     }
                 });
             }
+            if (modalCurrentFilterLabel) {
+                modalCurrentFilterLabel.innerHTML = `<i class="fas fa-utensils"></i> <span>All Items</span>`;
+            }
         }
         filterModalMenu();
+    });
+}
+
+if (modalMenuSearchClearBtn && modalMenuSearchInput) {
+    modalMenuSearchClearBtn.addEventListener('click', () => {
+        modalMenuSearchInput.value = '';
+        updateModalSearchClearBtn();
+        filterModalMenu();
+        modalMenuSearchInput.focus();
     });
 }
 
