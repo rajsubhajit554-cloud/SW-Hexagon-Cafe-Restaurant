@@ -1,4 +1,4 @@
-﻿// ============================================================
+// ============================================================
 // GUARANTEED PRELOADER INITIALIZATION & SAFETY FALLBACK
 // ============================================================
 (function() {
@@ -308,6 +308,17 @@ if (mainRestaurantMenuScroll) {
     let velocity = 0;
     let momentumRAF = null;
     let hasMoved = false;
+    let scrollPauseTimer = null;
+
+    // Pause float animations during scroll for zero lag
+    function onMenuScrolling() {
+        mainRestaurantMenuScroll.classList.add('is-scrolling');
+        clearTimeout(scrollPauseTimer);
+        scrollPauseTimer = setTimeout(() => {
+            mainRestaurantMenuScroll.classList.remove('is-scrolling');
+        }, 150);
+    }
+    mainRestaurantMenuScroll.addEventListener('scroll', onMenuScrolling, { passive: true });
 
     const stopMomentum = () => {
         if (momentumRAF) {
@@ -328,6 +339,7 @@ if (mainRestaurantMenuScroll) {
         velocity = 0;
         mainRestaurantMenuScroll.style.cursor = 'grabbing';
         mainRestaurantMenuScroll.style.userSelect = 'none';
+        mainRestaurantMenuScroll.classList.add('is-scrolling');
     });
 
     window.addEventListener('mousemove', (e) => {
@@ -366,6 +378,7 @@ if (mainRestaurantMenuScroll) {
             const step = () => {
                 if (Math.abs(currentVelocity) < 0.2 || isDown) {
                     stopMomentum();
+                    mainRestaurantMenuScroll.classList.remove('is-scrolling');
                     return;
                 }
                 mainRestaurantMenuScroll.scrollLeft -= currentVelocity;
@@ -374,6 +387,8 @@ if (mainRestaurantMenuScroll) {
             };
             stopMomentum();
             momentumRAF = requestAnimationFrame(step);
+        } else {
+            mainRestaurantMenuScroll.classList.remove('is-scrolling');
         }
     };
 
@@ -396,6 +411,10 @@ if (mainRestaurantMenuScroll) {
             mainRestaurantMenuScroll.scrollLeft += e.deltaY * 0.9;
         }
     }, { passive: false });
+
+    mainRestaurantMenuScroll.addEventListener('touchstart', () => {
+        stopMomentum();
+    }, { passive: true });
 }
 
 if (inPageMenuTabs.length > 0) {
