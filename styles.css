@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    HEXAGON CAFE & RESTAURANT — Premium Modern Theme
    ============================================================ */
 
@@ -2997,7 +2997,7 @@ footer p {
     scroll-behavior: auto;
     scroll-snap-type: x proximity;
     -webkit-overflow-scrolling: touch;
-    touch-action: pan-x;
+    touch-action: pan-x pan-y;
     overscroll-behavior-x: contain;
     will-change: scroll-position;
     padding: 8px 6px 18px;
@@ -3038,6 +3038,7 @@ footer p {
     flex-direction: column;
     padding: 12px;
     text-align: center;
+    touch-action: pan-x pan-y;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
     transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.25s ease, box-shadow 0.25s ease;
     user-select: none;
