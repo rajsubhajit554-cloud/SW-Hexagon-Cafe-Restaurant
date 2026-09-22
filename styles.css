@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    HEXAGON CAFE & RESTAURANT — Premium Modern Theme
    ============================================================ */
 
@@ -47,7 +47,7 @@
 }
 
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
 }
 
 body {
@@ -2715,8 +2715,6 @@ footer p {
     font-size: 0.92rem;
     font-weight: 600;
     cursor: pointer;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45), 0 0 15px rgba(201, 162, 75, 0.15);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     user-select: none;
@@ -2999,7 +2997,7 @@ footer p {
     scroll-behavior: auto;
     scroll-snap-type: x proximity;
     -webkit-overflow-scrolling: touch;
-    touch-action: pan-x pan-y;
+    touch-action: pan-x;
     overscroll-behavior-x: contain;
     will-change: scroll-position;
     padding: 8px 6px 18px;
@@ -3044,9 +3042,6 @@ footer p {
     transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.25s ease, box-shadow 0.25s ease;
     user-select: none;
     position: relative;
-    content-visibility: auto;
-    contain-intrinsic-size: 185px 280px;
-    contain: layout paint;
 }
 
 .food-menu-card.hidden {
@@ -3231,7 +3226,7 @@ footer p {
         flex: 0 0 148px;
         padding: 9px;
         border-radius: 14px;
-    }
+}
     .food-title {
         font-size: 0.88rem;
     }
@@ -3295,8 +3290,6 @@ footer p {
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.72);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
 }
 
 .full-menu-modal-container {
@@ -3610,9 +3603,6 @@ footer p {
     position: relative;
     transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06) !important;
-    content-visibility: auto;
-    contain-intrinsic-size: 210px 280px;
-    contain: layout paint;
 }
 
 .compact-grid .food-menu-card:hover {
@@ -3705,7 +3695,7 @@ footer p {
     .compact-grid .food-menu-card {
         padding: 8px;
         border-radius: 14px;
-    }
+}
 }
 
 

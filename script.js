@@ -1,4 +1,4 @@
-// ============================================================
+﻿// ============================================================
 // GUARANTEED PRELOADER INITIALIZATION & SAFETY FALLBACK
 // ============================================================
 (function() {
@@ -736,13 +736,6 @@ if (modalMenuSearchInput) {
             }
         }
         filterModalMenu();
-    });
-    // Hide/dismiss mobile keypad when Enter / Search key is pressed
-    modalMenuSearchInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.keyCode === 13) {
-            e.preventDefault();
-            modalMenuSearchInput.blur();
-        }
     });
 }
 
