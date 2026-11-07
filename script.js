@@ -811,3 +811,300 @@ document.addEventListener('keydown', (e) => {
         closeFullMenuModal();
     }
 });
+
+// ============================================================
+// DIWALI FESTIVAL CELEBRATION SUITE (দীপাবলি ও কালীপূজা ২০২৬)
+// Ultra-Lightweight & Optimized for Low-End Budget Phones (1GB-3GB RAM)
+// ============================================================
+(function() {
+    const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || window.innerWidth <= 768;
+    const isLowPowerDevice = isTouchDevice || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4);
+
+    // --- 1. WEB AUDIO API SYNTHESIZER ---
+    let audioCtx = null;
+    let soundEnabled = false;
+
+    function initAudio() {
+        if (!soundEnabled) return;
+        if (!audioCtx) {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            if (AudioContext) audioCtx = new AudioContext();
+        }
+        if (audioCtx && audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+    }
+
+    function playFireworkBoom() {
+        if (!soundEnabled || !audioCtx) return;
+        try {
+            const now = audioCtx.currentTime;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(120, now);
+            osc.frequency.exponentialRampToValueAtTime(30, now + 0.3);
+            gain.gain.setValueAtTime(0.2, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(now);
+            osc.stop(now + 0.35);
+        } catch (e) {}
+    }
+
+    function playDiwaliChime() {
+        if (!soundEnabled || !audioCtx) return;
+        try {
+            const now = audioCtx.currentTime;
+            [880, 1108, 1318].forEach((freq, idx) => {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(freq, now + idx * 0.06);
+                gain.gain.setValueAtTime(0.06, now + idx * 0.06);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.06 + 0.5);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(now + idx * 0.06);
+                osc.stop(now + idx * 0.06 + 0.55);
+            });
+        } catch (e) {}
+    }
+
+    // --- 2. ULTRA-LIGHTWEIGHT FIREWORKS ENGINE ---
+    const canvas = document.getElementById('diwali-fireworks-canvas');
+    let ctx = canvas ? canvas.getContext('2d') : null;
+    let fireworks = [];
+    let particles = [];
+    const colors = ['#FFD700', '#FF9100', '#FF1744', '#00E5FF', '#76FF03', '#E040FB'];
+
+    let isHeroInView = true;
+    let animationRunning = false;
+
+    const heroEl = document.getElementById('home');
+    if ('IntersectionObserver' in window && heroEl) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                isHeroInView = entry.isIntersecting;
+                if (!isHeroInView) {
+                    stopAnimation();
+                } else {
+                    startAnimation();
+                }
+            });
+        }, { threshold: 0.05 });
+        observer.observe(heroEl);
+    }
+
+    function resizeCanvas() {
+        if (!canvas) return;
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = Math.floor(rect.width);
+        canvas.height = Math.floor(rect.height);
+    }
+
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+    setTimeout(resizeCanvas, 250);
+
+    class FireworkRocket {
+        constructor(startX, startY, targetX, targetY) {
+            this.x = startX;
+            this.y = startY;
+            this.startX = startX;
+            this.startY = startY;
+            this.targetX = targetX;
+            this.targetY = targetY;
+            this.distanceToTarget = Math.hypot(targetX - startX, targetY - startY);
+            this.angle = Math.atan2(targetY - startY, targetX - startX);
+            this.speed = isLowPowerDevice ? 5 : 4.5;
+            this.color = colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        update(index) {
+            const vx = Math.cos(this.angle) * this.speed;
+            const vy = Math.sin(this.angle) * this.speed;
+            this.x += vx;
+            this.y += vy;
+            this.speed *= 1.03;
+
+            if (this.y <= this.targetY || Math.hypot(this.x - this.startX, this.y - this.startY) >= this.distanceToTarget) {
+                createExplosion(this.targetX, this.targetY, this.color);
+                playFireworkBoom();
+                fireworks.splice(index, 1);
+            }
+        }
+
+        draw() {
+            if (!ctx) return;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, 2.5, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+        }
+    }
+
+    class FireworkParticle {
+        constructor(x, y, color) {
+            this.x = x;
+            this.y = y;
+            this.angle = Math.random() * Math.PI * 2;
+            this.speed = Math.random() * (isLowPowerDevice ? 3.5 : 5) + 1.2;
+            this.friction = 0.94;
+            this.gravity = 0.65;
+            this.color = color;
+            this.alpha = 1;
+            this.decay = Math.random() * 0.03 + (isLowPowerDevice ? 0.03 : 0.018);
+        }
+
+        update(index) {
+            this.speed *= this.friction;
+            this.x += Math.cos(this.angle) * this.speed;
+            this.y += Math.sin(this.angle) * this.speed + this.gravity;
+            this.alpha -= this.decay;
+            if (this.alpha <= 0.05) {
+                particles.splice(index, 1);
+            }
+        }
+
+        draw() {
+            if (!ctx) return;
+            ctx.fillStyle = this.color;
+            ctx.globalAlpha = Math.max(0, this.alpha);
+            ctx.fillRect(this.x, this.y, 2.5, 2.5);
+            ctx.globalAlpha = 1;
+        }
+    }
+
+    function createExplosion(x, y, color) {
+        const particleCount = isLowPowerDevice ? 14 : 36;
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new FireworkParticle(x, y, color));
+        }
+    }
+
+    function launchRocketTo(targetX, targetY) {
+        if (!canvas) return;
+        const startX = Math.random() * canvas.width;
+        const startY = canvas.height;
+        fireworks.push(new FireworkRocket(startX, startY, targetX, targetY));
+        if (!animationRunning) startAnimation();
+    }
+
+    if (canvas) {
+        canvas.addEventListener('click', (e) => {
+            initAudio();
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            launchRocketTo(x, y);
+        });
+    }
+
+    function animateFireworks() {
+        if (!animationRunning || !ctx || !canvas) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (let i = fireworks.length - 1; i >= 0; i--) {
+            fireworks[i].draw();
+            fireworks[i].update(i);
+        }
+
+        for (let i = particles.length - 1; i >= 0; i--) {
+            particles[i].draw();
+            particles[i].update(i);
+        }
+
+        if (fireworks.length === 0 && particles.length === 0 && !isHeroInView) {
+            stopAnimation();
+            return;
+        }
+
+        requestAnimationFrame(animateFireworks);
+    }
+
+    function startAnimation() {
+        if (animationRunning) return;
+        animationRunning = true;
+        requestAnimationFrame(animateFireworks);
+    }
+
+    function stopAnimation() {
+        animationRunning = false;
+        particles = [];
+        fireworks = [];
+        if (ctx && canvas) ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    startAnimation();
+
+    const ambientDelay = isLowPowerDevice ? 7000 : 4000;
+    setInterval(() => {
+        if (canvas && isHeroInView && document.visibilityState === 'visible') {
+            const tx = Math.random() * (canvas.width * 0.8) + (canvas.width * 0.1);
+            const ty = Math.random() * (canvas.height * 0.45) + (canvas.height * 0.1);
+            launchRocketTo(tx, ty);
+        }
+    }, ambientDelay);
+
+    // --- 3. SPARKLER TRAIL (DESKTOP ONLY) ---
+    let sparklerEnabled = !isTouchDevice;
+    let lastSparklerTime = 0;
+
+    function createSparkler(x, y) {
+        if (!sparklerEnabled || isTouchDevice) return;
+        const now = Date.now();
+        if (now - lastSparklerTime < 35) return;
+        lastSparklerTime = now;
+
+        const count = 2;
+        for (let i = 0; i < count; i++) {
+            const spark = document.createElement('div');
+            spark.className = 'diwali-sparkler-dot';
+            const size = Math.random() * 4 + 3;
+            spark.style.width = size + 'px';
+            spark.style.height = size + 'px';
+            spark.style.left = x + 'px';
+            spark.style.top = y + 'px';
+            const col = colors[Math.floor(Math.random() * colors.length)];
+            spark.style.background = col;
+
+            const angle = Math.random() * Math.PI * 2;
+            const dist = Math.random() * 25 + 8;
+            const tx = Math.cos(angle) * dist;
+            const ty = Math.sin(angle) * dist + 10;
+            spark.style.setProperty('--tx', `${tx}px`);
+            spark.style.setProperty('--ty', `${ty}px`);
+
+            document.body.appendChild(spark);
+            setTimeout(() => spark.remove(), 550);
+        }
+    }
+
+    if (!isTouchDevice) {
+        window.addEventListener('mousemove', (e) => {
+            createSparkler(e.clientX, e.clientY);
+        }, { passive: true });
+    }
+
+        // --- 4. INTERACTIVE DIYA GARLAND AT BOTTOM ---
+    function initDiyas() {
+        const diyaItems = document.querySelectorAll('.interactive-diya-item');
+        diyaItems.forEach(diyaItem => {
+            diyaItem.addEventListener('click', () => {
+                initAudio();
+                const isUnlit = diyaItem.classList.toggle('unlit');
+                if (!isUnlit) {
+                    playDiwaliChime();
+                }
+            });
+        });
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initDiyas);
+    } else {
+        initDiyas();
+    }
+
+    console.log("🪔 Diwali Theme Active & Smooth!");
+})();

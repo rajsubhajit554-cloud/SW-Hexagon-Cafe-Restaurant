@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hexagon Cafe & Restaurant</title>
     <link rel="icon" type="image/png" href="assets/hexagon_logo.webp">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;600&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css?v=1.3">
 </head>
-<body class="no-scroll">
+<body class="no-scroll diwali-theme">
     <!-- Preloader Screen -->
     <div id="preloader">
         <div class="preloader-content">
+            <div class="preloader-diya-glow">🪔</div>
             <h1 class="preloader-title">Welcome to <br><span class="highlight">Hexagon Cafe & Restaurant</span></h1>
             <div class="preloader-loader">
                 <div class="loader-bar"></div>
@@ -20,17 +21,32 @@
         </div>
     </div>
     <!-- Navbar -->
+        <!-- Hanging Decorative Diwali Toran & Lanterns -->
+    <div class="diwali-hanging-toran" aria-hidden="true">
+        <div class="toran-string"></div>
+        <div class="toran-items">
+            <span class="toran-lantern tl1">🏮</span>
+            <span class="toran-diya td1">🪔</span>
+            <span class="toran-flower tf1">🏵️</span>
+            <span class="toran-lantern tl2">🏮</span>
+            <span class="toran-diya td2">🪔</span>
+            <span class="toran-flower tf2">🏵️</span>
+            <span class="toran-lantern tl3">🏮</span>
+            <span class="toran-diya td3">🪔</span>
+            <span class="toran-lantern tl4">🏮</span>
+        </div>
+    </div>
     <nav class="navbar">
         <div class="logo-container">
             <img src="assets/hexagon_logo.webp" alt="Hexagon Cafe & Restaurant Logo" class="logo-brand-img">
             <div class="logo-text-wrapper">
-                <span class="animated-football-header" title="Mahalaya Special">
-                    <img src="assets/lakshmi_puja_web_run_icon.webp" alt="Mahalaya Run Icon" style="object-fit: contain; filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.6));">
+                <span class="animated-football-header" title="Diwali Celebration">
+                    <img src="assets/diwali_run_icon.webp" alt="Mahalaya Run Icon" style="object-fit: contain; filter: drop-shadow(0 2px 5px rgba(183, 28, 28, 0.4)) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));">
                 </span>
                 <span class="logo-text">Hexagon Cafe & Restaurant</span>
             </div>
         </div>
-        <span class="rath-yatra-header-text">শুভ লক্ষ্মীপূজা</span>
+        <span class="rath-yatra-header-text diwali-header-text">✨ শুভ দীপাবলি ও কালীপূজা 🪔</span>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#menu">Menu</a></li>
@@ -38,14 +54,6 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
         <div class="navbar-actions">
-            <!-- Rakhi Purnima Button for Poster -->
-            <button class="fifa-btn" id="open-promo-modal-direct-btn" title="Show Mahalaya Special Poster">
-                <div class="fifa-container">
-                    <div class="fifa-magic-ring"></div>
-                    <img src="assets/lakshmi_puja_web_icon.webp" alt="Mahalaya Special" class="fifa-svg" style="object-fit: contain;">
-                </div>
-            </button>
-            
             <div class="hamburger">
                 <i class="fas fa-bars"></i>
             </div>
@@ -55,11 +63,16 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-bg banner-box">
-            <img src="assets/lakshmi_puja_greeting_banner.webp" alt="Durga Puja Festival Banner" class="active">
+            <img src="assets/diwali_greeting_banner.webp" alt="Happy Diwali Festival Banner" class="active">
             <img src="assets/banner_1.webp" alt="Hexagon Cafe & Restaurant Banner 1">
             <img src="assets/banner_2.webp" alt="Hexagon Cafe & Restaurant Banner 2">
             <img src="assets/banner_3.webp" alt="Hexagon Cafe & Restaurant Banner 3">
             <div class="overlay"></div>
+        </div>
+        <!-- Interactive Diwali Fireworks Canvas Overlay -->
+        <canvas id="diwali-fireworks-canvas"></canvas>
+        <div class="hero-diwali-badge">
+            <span class="sparkle-star">✦</span> Happy Diwali 2026 <span class="sparkle-star">✦</span>
         </div>
         <!-- Click/Hover Zones for Banner Control -->
         <div class="hero-nav-zone left-zone" title="Previous Image"></div>
@@ -5022,15 +5035,19 @@
 
 
 
-    <!-- Promo Poster Modal -->
-    <div class="promo-modal" id="promo-modal">
-        <div class="promo-modal-overlay"></div>
-        <div class="promo-modal-content">
-            <button class="promo-modal-close" id="close-promo-modal-btn" aria-label="Close Promo Modal"><i class="fas fa-times"></i></button>
-            <img src="assets/promo_poster.webp" alt="Rakhi Purnima Celebration" class="promo-poster-img">
-        </div>
+        <!-- Interactive Diwali Diya Bar along bottom -->
+    <div class="diwali-diya-bar" id="diwali-diya-bar" title="Interactive Diwali Diyas - Click to Light / Extinguish">
+        <div class="interactive-diya-item"><div class="diya-flame"></div><div class="diya-pot"></div></div>
+        <div class="interactive-diya-item"><div class="diya-flame"></div><div class="diya-pot"></div></div>
+        <div class="interactive-diya-item"><div class="diya-flame"></div><div class="diya-pot"></div></div>
+        <div class="interactive-diya-item"><div class="diya-flame"></div><div class="diya-pot"></div></div>
+        <div class="interactive-diya-item"><div class="diya-flame"></div><div class="diya-pot"></div></div>
+        <div class="interactive-diya-item"><div class="diya-flame"></div><div class="diya-pot"></div></div>
+        <div class="interactive-diya-item"><div class="diya-flame"></div><div class="diya-pot"></div></div>
+        <div class="interactive-diya-item"><div class="diya-flame"></div><div class="diya-pot"></div></div>
+        <div class="interactive-diya-item"><div class="diya-flame"></div><div class="diya-pot"></div></div>
+        <div class="interactive-diya-item"><div class="diya-flame"></div><div class="diya-pot"></div></div>
     </div>
-
     <script src="script.js?v=1.4"></script>
-</body>
+    </body>
 </html>
